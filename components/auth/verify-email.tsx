@@ -59,7 +59,7 @@ export default function VerifyEmail({ email }: TverifyEmailProps) {
 
 			if (completeSignUp.status === "complete") {
 				await setActive({ session: completeSignUp.createdSessionId });
-				router.push("/dashboard");
+				router.push("/admin/dashboard");
 			} else {
 				setClerkError("Verification incomplete. Please try again.");
 			}

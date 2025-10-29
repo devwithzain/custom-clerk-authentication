@@ -39,7 +39,7 @@ export default function LoginForm() {
 
 			if (result.status === "complete") {
 				await setActive({ session: result.createdSessionId });
-				router.push("/dashboard");
+				router.push("/admin/dashboard");
 			} else {
 				setClerkError("Sign in incomplete. Try again.");
 			}

@@ -94,7 +94,7 @@ export function NavUser({ user }: { user: UserResource | null }) {
 
 						<DropdownMenuSeparator />
 
-						<Link href="/dashboard/account">
+						<Link href="/admin/account">
 							<DropdownMenuGroup>
 								<DropdownMenuItem>
 									<Settings className="mr-2 h-4 w-4" />

@@ -40,7 +40,7 @@ export const sideBarItem = {
    navMain: [
       {
          title: "Dashboard",
-         url: "/dashboard",
+         url: "/admin/dashboard",
          icon: House,
       },
       {

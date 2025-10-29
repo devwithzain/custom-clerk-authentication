@@ -14,7 +14,7 @@ export default function Socials() {
 			await signIn.authenticateWithRedirect({
 				strategy: provider,
 				redirectUrl: "/sso-callback",
-				redirectUrlComplete: "/dashboard",
+				redirectUrlComplete: "/admin/dashboard",
 			});
 		} catch (err) {
 			console.error("Social login error:", err);

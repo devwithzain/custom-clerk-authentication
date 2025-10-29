@@ -12,7 +12,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default function Account() {
-	const { signOut, session } = useClerk();
+	const { signOut } = useClerk();
 	const { isLoaded, user } = useUser();
 	const [email, setEmail] = useState("");
 	const [lastName, setLastName] = useState("");
@@ -26,7 +26,6 @@ export default function Account() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-	// Load user info
 	useEffect(() => {
 		if (isLoaded && user) {
 			setFirstName(user.firstName || "");
@@ -49,10 +48,10 @@ export default function Account() {
 		setIsSaving(true);
 		try {
 			await user.update({ firstName, lastName });
-			toast.success("✅ Profile updated successfully");
+			toast.success("Profile updated successfully");
 		} catch (err) {
 			console.error(err);
-			toast.error("❌ Failed to update profile");
+			toast.error("Failed to update profile");
 		} finally {
 			setIsSaving(false);
 		}
@@ -67,10 +66,10 @@ export default function Account() {
 
 		try {
 			await user.setProfileImage({ file });
-			toast.success("✅ Profile image updated");
+			toast.success("Profile image updated");
 		} catch (error) {
 			console.error("Error uploading image:", error);
-			toast.error("❌ Failed to update image");
+			toast.error("Failed to update image");
 		}
 	};
 
@@ -88,13 +87,13 @@ export default function Account() {
 		setIsPasswordSaving(true);
 		try {
 			await user.updatePassword({ currentPassword, newPassword });
-			toast.success("Password updated successfully ✅");
+			toast.success("Password updated successfully");
 			setCurrentPassword("");
 			setNewPassword("");
 			setConfirmPassword("");
 		} catch (err: any) {
 			console.error(err);
-			toast.error(err?.errors?.[0]?.message || "Failed to update password ❌");
+			toast.error(err?.errors?.[0]?.message || "Failed to update password");
 		} finally {
 			setIsPasswordSaving(false);
 		}
@@ -102,9 +101,7 @@ export default function Account() {
 
 	// ---------- DELETE ACCOUNT ----------
 	const handleDeleteAccount = async () => {
-		if (
-			!confirm("⚠️ Are you sure you want to permanently delete your account?")
-		)
+		if (!confirm("Are you sure you want to permanently delete your account?"))
 			return;
 
 		setIsDeleting(true);
@@ -114,7 +111,7 @@ export default function Account() {
 			window.location.href = "/";
 		} catch (error) {
 			console.error(error);
-			toast.error("❌ Failed to delete account");
+			toast.error("Failed to delete account");
 		} finally {
 			setIsDeleting(false);
 		}
@@ -179,6 +176,7 @@ export default function Account() {
 							<Input
 								id="picture"
 								type="file"
+								onChange={handleImageChange}
 							/>
 						</div>
 
